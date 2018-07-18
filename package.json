@@ -1,0 +1,31 @@
+{
+  "name": "mydiary-api",
+  "version": "1.0.0",
+  "description": "This project exposes endpoints to power the MyDiary App",
+  "main": "index.js",
+  "scripts": {
+    "test": "mocha",
+    "build": "babel src -d dist"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/EmefileFrancis/MyDiary-API.git"
+  },
+  "author": "Emefile Francis F",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/EmefileFrancis/MyDiary-API/issues"
+  },
+  "homepage": "https://github.com/EmefileFrancis/MyDiary-API#readme",
+  "devDependencies": {
+    "babel-cli": "^6.26.0",
+    "babel-eslint": "^8.2.6",
+    "babel-preset-env": "^1.7.0",
+    "chai": "^4.1.2",
+    "eslint": "^4.19.1",
+    "eslint-config-airbnb-base": "^13.0.0",
+    "eslint-plugin-import": "^2.13.0",
+    "mocha": "^5.2.0"
+  },
+  "dependencies": {}
+}
