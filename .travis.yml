@@ -2,5 +2,4 @@ language: node_js
 node_js:
   - "stable"
 after_success:
-  killall -9 node
   npm run coverage

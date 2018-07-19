@@ -7,7 +7,7 @@ describe('api/v1/entries', () => {
   // beforeEach(() => { server });
 
   // afterEach(() => {
-  //   server.close();
+  //  server.close();
   // });
 
   describe('GET /', () => {
