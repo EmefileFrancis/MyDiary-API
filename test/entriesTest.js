@@ -1,14 +1,14 @@
 const request = require('supertest');
 const expect = require('chai').expect;
-const server = require('../dist/index');
+let server; 
 
 
 describe('api/v1/entries', () => {
-  // beforeEach(() => { server.start(); });
+   beforeEach(() => { server = require('../dist/index'); });
 
-  // afterEach(() => {
-  //   server.close();
-  // });
+   afterEach(() => {
+     server.close();
+   });
 
   describe('GET /', () => {
     it('should return all entries', async () => {
