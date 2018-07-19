@@ -4,7 +4,7 @@
   "description": "This project exposes endpoints to power the MyDiary App",
   "main": "index.js",
   "scripts": {
-    "test": "nyc --reporter=html --reporter=text mocha",
+    "test": "nyc --reporter=html --reporter=text mocha --exit",
     "coverage": "nyc report --reporter=text-lcov | coveralls",
     "start": "node bin/dev",
     "cover": "istanbul cover _mocha",
