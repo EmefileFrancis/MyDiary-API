@@ -4,11 +4,11 @@ let server;
 
 
 describe('api/v1/entries', () => {
-   beforeEach(() => { server = require('../dist/index'); });
+   //beforeEach(() => { server = require('../dist/index'); });
 
-   afterEach(() => {
-     server.close();
-   });
+   //afterEach(() => {
+   //  server.close();
+   //});
 
   describe('GET /', () => {
     it('should return all entries', async () => {
