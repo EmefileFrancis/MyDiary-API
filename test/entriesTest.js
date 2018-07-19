@@ -1,6 +1,6 @@
 const request = require('supertest');
 const expect = require('chai').expect;
-let server; 
+const server = require('../dist/index'); }; 
 
 
 describe('api/v1/entries', () => {
