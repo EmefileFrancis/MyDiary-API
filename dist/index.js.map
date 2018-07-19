@@ -1,0 +1,1 @@
+{"version":3,"sources":["../src/index.js"],"names":["console","log"],"mappings":";;AAAA;;AAEAA,QAAQC,GAAR,CAAY,iBAAZ;AACAD,QAAQC,GAAR,CAAY,mBAAZ","file":"index.js","sourcesContent":["import { hello, helloMe } from './app';\r\n\r\nconsole.log(hello());\r\nconsole.log(helloMe());\r\n"]}
