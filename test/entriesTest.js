@@ -2,9 +2,9 @@ const request = require('supertest');
 const expect = require('chai').expect;
 const server = require('../dist/index');
 
-
 describe('api/v1/entries', () => {
-  // beforeEach(() => { server.start(); });
+  /* eslint-disable global-require */
+  // beforeEach(() => { server });
 
   // afterEach(() => {
   //   server.close();

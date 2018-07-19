@@ -1,6 +1,7 @@
 const entries = [
   {
     id: 1,
+    userId: 2,
     title: 'First Entry Title',
     body: `Lorem ipsum dolor sit amet, consectetur adipiscing elit, 
     sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. 
@@ -11,6 +12,7 @@ const entries = [
   },
   {
     id: 2,
+    userId: 2,
     title: 'Second Entry Title',
     body: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit,'
     + 'sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.'
@@ -21,6 +23,7 @@ const entries = [
   },
   {
     id: 3,
+    userId: 1,
     title: 'Third Entry Title',
     body: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit,'
     + 'sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.'
@@ -31,6 +34,7 @@ const entries = [
   },
   {
     id: 4,
+    userId: 1,
     title: 'Fourth Entry Title',
     body: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit,'
     + 'sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.'
