@@ -1,3 +1,5 @@
+import Joi from 'joi';
+
 const entries = [
   {
     id: 1,
@@ -41,8 +43,20 @@ const entries = [
     + 'Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.'
     + 'Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.'
     + 'Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum',
-    date: new Date('July 15, 2017 09:12:00'),
+    date: 'July 15, 2017 09:12:00',
   },
 ];
 
-export default entries;
+function validateEntry(entry) {
+  const schema = {
+    id: Joi.number().min(1).required(),
+    userId: Joi.number().min(1).required(),
+    title: Joi.string().required(),
+    body: Joi.string().required(),
+    date: Joi.string(),
+  };
+
+  return Joi.validate(entry, schema);
+}
+
+export { entries, validateEntry };
