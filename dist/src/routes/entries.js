@@ -49,5 +49,22 @@ router.post('/', function (req, res) {
   res.send(newEntry);
 });
 
+router.put('/:id', function (req, res) {
+  var entry = _entry.entries.find(function (c) {
+    return c.id === parseInt(req.params.id, 10);
+  });
+  if (!entry) res.status(404).send('Entry with specified Id not found.');
+
+  var result = (0, _entry.validateEntry)(req.body);
+  if (result.error) res.status(400).send(result.error.details[0].message);
+
+  entry.userId = req.body.userId;
+  entry.title = req.body.title;
+  entry.body = req.body.body;
+  entry.date = req.body.date;
+
+  res.send(entry);
+});
+
 exports.default = router;
 //# sourceMappingURL=entries.js.map

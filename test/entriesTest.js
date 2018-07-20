@@ -4,6 +4,10 @@ const server = require('../dist/index');
 const { entries } = require('../dist/src/models/entry');
 
 describe('api/v1/entries', () => {
+  // beforeEach(() => { server.default.open(); });
+
+  // afterEach(() => { server.default.close(); });
+
   describe('GET /', () => {
     it('should return all entries', async () => {
       const res = await request(server.default).get('/api/v1/entries');
@@ -49,6 +53,42 @@ describe('api/v1/entries', () => {
       const res = await request(server.default).get('/api/v1/entries/userId/10');
 
       expect(res.status).to.equal(404);
+    });
+  });
+
+  describe('PUT /:id', () => {
+    it('should return 404 if Id not found', async () => {
+      const res = await request(server.default).put('/api/v1/entries/100').send({
+        userId: 1, title: 'Another Entry Title', body: 'Another Entry body', date: 'July 15, 2017 09:12:00',
+      });
+      expect(res.status).to.equal(404);
+    });
+
+    it('should return 400 if input is not valid', async () => {
+      const res = await request(server.default).put('/api/v1/entries/1').send({
+        id: 1, userId: 1, body: 'Another Entry body', date: 'July 15, 2017 09:12:00',
+      });
+      expect(res.status).to.equal(400);
+    });
+
+    it('should update the specified entry', async () => {
+      const res = await request(server.default).put('/api/v1/entries/1').send({
+        id: 1, userId: 1, title: 'Another Entry Title', body: 'Another Entry body', date: 'July 15, 2017 09:12:00',
+      });
+      expect(res.status).to.equal(200);
+      expect(entries.find(c => c.id === 1)).to.have.property('id', 1);
+      expect(entries.find(c => c.id === 1)).to.have.property('title', 'Another Entry Title');
+    });
+
+    it('should return the updated version after updating', async () => {
+      const res = await request(server.default).put('/api/v1/entries/1').send({
+        id: 1, userId: 1, title: 'Another Entry Title', body: 'Another Entry body', date: 'July 15, 2017 09:12:00',
+      });
+      expect(res.status).to.equal(200);
+      expect(res.body).to.have.property('id', 1);
+      expect(res.body).to.have.property('title', 'Another Entry Title');
+      expect(res.body).to.have.property('body', 'Another Entry body');
+      expect(res.body).to.have.property('userId', 1);
     });
   });
 
