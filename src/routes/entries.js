@@ -34,4 +34,19 @@ router.post('/', (req, res) => {
   res.send(newEntry);
 });
 
+router.put('/:id', (req, res) => {
+  const entry = entries.find(c => c.id === parseInt(req.params.id, 10));
+  if (!entry) res.status(404).send('Entry with specified Id not found.');
+
+  const result = validateEntry(req.body);
+  if (result.error) res.status(400).send(result.error.details[0].message);
+
+  entry.userId = req.body.userId;
+  entry.title = req.body.title;
+  entry.body = req.body.body;
+  entry.date = req.body.date;
+
+  res.send(entry);
+});
+
 export default router;
