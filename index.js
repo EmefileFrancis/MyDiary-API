@@ -5,6 +5,8 @@ import entries from './src/routes/entries';
 
 const app = express();
 
+require('./src/middleware/prod')(app);
+
 app.use(express.json());
 app.use('/api/v1/entries', entries);
 
