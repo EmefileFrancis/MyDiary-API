@@ -13,4 +13,11 @@ router.get('/:id', (req, res) => {
   res.send(entry);
 });
 
+router.get('/userId/:userId', (req, res) => {
+  const entriesByUser = entries.filter(c => c.userId === parseInt(req.params.userId, 10));
+  if (entriesByUser === undefined || entriesByUser.length === 0) res.status(404).send('No entry with specified userId.');
+  res.send(entriesByUser);
+});
+
+
 export default router;

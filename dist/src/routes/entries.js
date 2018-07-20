@@ -28,5 +28,13 @@ router.get('/:id', function (req, res) {
   res.send(entry);
 });
 
+router.get('/userId/:userId', function (req, res) {
+  var entriesByUser = _entry2.default.filter(function (c) {
+    return c.userId === parseInt(req.params.userId, 10);
+  });
+  if (entriesByUser === undefined || entriesByUser.length === 0) res.status(404).send('No entry with specified userId.');
+  res.send(entriesByUser);
+});
+
 exports.default = router;
 //# sourceMappingURL=entries.js.map
