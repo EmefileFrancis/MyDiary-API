@@ -19,4 +19,5 @@ router.get('/userId/:userId', (req, res) => {
   res.send(entriesByUser);
 });
 
+
 export default router;
