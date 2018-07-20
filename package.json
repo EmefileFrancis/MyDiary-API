@@ -11,6 +11,9 @@
     "build": "npm run clean && mkdir dist && babel index.js -s -d dist && babel src -s -d dist/src",
     "production": "npm run build && node bin/production"
   },
+  "engines": {
+    "node": "8.11.2"
+  },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/EmefileFrancis/MyDiary-API.git"
@@ -37,8 +40,10 @@
   },
   "dependencies": {
     "babel-register": "^6.26.0",
+    "compression": "^1.7.3",
     "debug": "^3.1.0",
     "express": "^4.16.3",
+    "helmet": "^3.12.1",
     "joi": "^13.4.0",
     "wtfnode": "^0.7.0"
   }
