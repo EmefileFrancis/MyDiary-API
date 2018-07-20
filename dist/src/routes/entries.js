@@ -66,5 +66,16 @@ router.put('/:id', function (req, res) {
   res.send(entry);
 });
 
+router.delete('/:id', function (req, res) {
+  var entry = _entry.entries.find(function (c) {
+    return c.id === parseInt(req.params.id, 10);
+  });
+  if (!entry) res.status(404).send('Entry with specified Id not found.');
+
+  var index = _entry.entries.indexOf(entry);
+  _entry.entries.splice(index, 1);
+  res.send(entry);
+});
+
 exports.default = router;
 //# sourceMappingURL=entries.js.map

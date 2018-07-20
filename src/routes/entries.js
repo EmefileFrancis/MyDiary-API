@@ -49,4 +49,13 @@ router.put('/:id', (req, res) => {
   res.send(entry);
 });
 
+router.delete('/:id', (req, res) => {
+  const entry = entries.find(c => c.id === parseInt(req.params.id, 10));
+  if (!entry) res.status(404).send('Entry with specified Id not found.');
+
+  const index = entries.indexOf(entry);
+  entries.splice(index, 1);
+  res.send(entry);
+});
+
 export default router;

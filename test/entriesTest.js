@@ -56,6 +56,28 @@ describe('api/v1/entries', () => {
     });
   });
 
+  describe('DELETE /:id', () => {
+    it('should return 404 if id is invalid', async () => {
+      const res = await request(server.default).delete('/api/v1/entries/100');
+
+      expect(res.status).to.equal(404);
+    });
+
+    it('should delete the entry if id is valid', async () => {
+      const res = await request(server.default).delete('/api/v1/entries/1');
+
+      expect(res.status).to.equal(200);
+      expect(entries.length).to.equal(2);
+    });
+
+    it('should return the deleted entry', async () => {
+      const res = await request(server.default).delete('/api/v1/entries/2');
+
+      expect(res.status).to.equal(200);
+      expect(res.body).to.have.property('id', 2);
+    });
+  });
+
   describe('PUT /:id', () => {
     it('should return 404 if Id not found', async () => {
       const res = await request(server.default).put('/api/v1/entries/100').send({
@@ -65,27 +87,27 @@ describe('api/v1/entries', () => {
     });
 
     it('should return 400 if input is not valid', async () => {
-      const res = await request(server.default).put('/api/v1/entries/1').send({
-        id: 1, userId: 1, body: 'Another Entry body', date: 'July 15, 2017 09:12:00',
+      const res = await request(server.default).put('/api/v1/entries/3').send({
+        id: 3, userId: 1, body: 'Another Entry body', date: 'July 15, 2017 09:12:00',
       });
       expect(res.status).to.equal(400);
     });
 
     it('should update the specified entry', async () => {
-      const res = await request(server.default).put('/api/v1/entries/1').send({
-        id: 1, userId: 1, title: 'Another Entry Title', body: 'Another Entry body', date: 'July 15, 2017 09:12:00',
+      const res = await request(server.default).put('/api/v1/entries/3').send({
+        id: 3, userId: 1, title: 'Another Entry Title', body: 'Another Entry body', date: 'July 15, 2017 09:12:00',
       });
       expect(res.status).to.equal(200);
-      expect(entries.find(c => c.id === 1)).to.have.property('id', 1);
-      expect(entries.find(c => c.id === 1)).to.have.property('title', 'Another Entry Title');
+      expect(entries.find(c => c.id === 3)).to.have.property('id', 3);
+      expect(entries.find(c => c.id === 3)).to.have.property('title', 'Another Entry Title');
     });
 
     it('should return the updated version after updating', async () => {
-      const res = await request(server.default).put('/api/v1/entries/1').send({
-        id: 1, userId: 1, title: 'Another Entry Title', body: 'Another Entry body', date: 'July 15, 2017 09:12:00',
+      const res = await request(server.default).put('/api/v1/entries/3').send({
+        id: 3, userId: 1, title: 'Another Entry Title', body: 'Another Entry body', date: 'July 15, 2017 09:12:00',
       });
       expect(res.status).to.equal(200);
-      expect(res.body).to.have.property('id', 1);
+      expect(res.body).to.have.property('id', 3);
       expect(res.body).to.have.property('title', 'Another Entry Title');
       expect(res.body).to.have.property('body', 'Another Entry body');
       expect(res.body).to.have.property('userId', 1);
@@ -119,7 +141,7 @@ describe('api/v1/entries', () => {
         id: 6, userId: 1, title: 'Fifth Entry Title', body: 'Fifth Entry Body', date: 'July 15, 2017 09:12:00',
       });
       expect(res.status).to.equal(200);
-      expect(entries.length).to.equal(8);
+      expect(entries.length).to.equal(5);
     });
 
     it('should return the entry if it is valid', async () => {
