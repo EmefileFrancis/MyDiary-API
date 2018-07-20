@@ -1,6 +1,7 @@
 const request = require('supertest');
 const expect = require('chai').expect;
 const server = require('../dist/index');
+const { entries } = require('../dist/src/models/entry');
 
 describe('api/v1/entries', () => {
   describe('GET /', () => {
@@ -17,7 +18,7 @@ describe('api/v1/entries', () => {
   });
 
   describe('GET /:id', () => {
-    it('should return a entry if valid id is passed', async () => {
+    it('should return an entry if valid id is passed', async () => {
       const res = await request(server.default).get('/api/v1/entries/1');
 
       expect(res.status).to.equal(200);
@@ -48,6 +49,45 @@ describe('api/v1/entries', () => {
       const res = await request(server.default).get('/api/v1/entries/userId/10');
 
       expect(res.status).to.equal(404);
+    });
+  });
+
+  describe('POST /', () => {
+    it('should return 400 if id is less than 1', async () => {
+      const res = await request(server.default).post('/api/v1/entries').send({
+        id: 0, userId: 1, title: 'Fifth Entry Title', body: 'Fifth Entry Body', date: 'July 15, 2017 09:12:00',
+      });
+      expect(res.status).to.equal(400);
+    });
+
+    it('should return 400 if userId is not specified', async () => {
+      const res = await request(server.default).post('/api/v1/entries').send({
+        id: 0, title: 'Fifth Entry Title', body: 'Fifth Entry Body', date: 'July 15, 2017 09:12:00',
+      });
+      expect(res.status).to.equal(400);
+    });
+
+    it('should return 400 if userId is less than 1', async () => {
+      const res = await request(server.default).post('/api/v1/entries').send({
+        id: 1, userId: 0, title: 'Fifth Entry Title', body: 'Fifth Entry Body', date: 'July 15, 2017 09:12:00',
+      });
+      expect(res.status).to.equal(400);
+    });
+
+    it('should save the entry if it is valid', async () => {
+      const res = await request(server.default).post('/api/v1/entries').send({
+        id: 6, userId: 1, title: 'Fifth Entry Title', body: 'Fifth Entry Body', date: 'July 15, 2017 09:12:00',
+      });
+      expect(res.status).to.equal(200);
+      expect(entries.length).to.equal(8);
+    });
+
+    it('should return the entry if it is valid', async () => {
+      const res = await request(server.default).post('/api/v1/entries').send({
+        id: 9, userId: 1, title: 'Fifth Entry Title', body: 'Fifth Entry Body', date: 'July 15, 2017 09:12:00',
+      });
+      expect(res.body).to.have.property('id', 9);
+      expect(res.body).to.have.property('title', 'Fifth Entry Title');
     });
   });
 });
