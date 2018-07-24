@@ -11,11 +11,15 @@ describe('api/v1/entries', () => {
       const res = await request(server.default).get('/api/v1/entries');
       expect(res.status).to.equal(200);
       expect(res.body.length).to.equal(4);
-      const titles = [];
-      res.body.forEach((e) => {
-        titles.push(e.title);
-      });
-      expect(titles).to.have.members(['First Entry Title', 'Second Entry Title', 'Third Entry Title', 'Fourth Entry Title']);
+      expect(res.body[0]).to.have.property('title', 'First Entry Title');
+      expect(res.body[res.body.length - 1]).to.have.property('title', 'Fourth Entry Title');
+      // const titles = [];
+      // res.body.forEach((e) => {
+      //   titles.push(e.title);
+      // });
+      // expect(titles).to.have.members(
+      //   ['First Entry Title', 'Second Entry Title', 'Third Entry Title', 'Fourth Entry Title']
+      // );
     });
   });
 
