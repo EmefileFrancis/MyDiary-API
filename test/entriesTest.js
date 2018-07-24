@@ -1,13 +1,11 @@
-const request = require('supertest');
-const expect = require('chai').expect;
+import request from 'supertest';
+import chai from 'chai';
+import { entries } from '../dist/src/models/entry';
+
+const expect = chai.expect;
 const server = require('../dist/index');
-const { entries } = require('../dist/src/models/entry');
 
 describe('api/v1/entries', () => {
-  // beforeEach(() => { server.default.open(); });
-
-  // afterEach(() => { server.default.close(); });
-
   describe('GET /', () => {
     it('should return all entries', async () => {
       const res = await request(server.default).get('/api/v1/entries');

@@ -4,7 +4,7 @@
   "description": "This project exposes endpoints to power the MyDiary App",
   "main": "index.js",
   "scripts": {
-    "test": "nyc --reporter=html --reporter=text mocha --exit",
+    "test": "nyc --reporter=html --reporter=text mocha --compilers js:babel-core/register --require babel-polyfill --exit",
     "coverage": "nyc report --reporter=text-lcov | coveralls",
     "start": "node bin/dev",
     "clean": "rm -rf dist",
@@ -39,12 +39,12 @@
     "supertest": "^3.1.0"
   },
   "dependencies": {
+    "babel-polyfill": "^6.26.0",
     "babel-register": "^6.26.0",
     "compression": "^1.7.3",
     "debug": "^3.1.0",
     "express": "^4.16.3",
     "helmet": "^3.12.1",
-    "joi": "^13.4.0",
-    "wtfnode": "^0.7.0"
+    "joi": "^13.4.0"
   }
 }
