@@ -55,7 +55,7 @@ router.delete('/:id', (req, res) => {
 
   const index = entries.indexOf(entry);
   entries.splice(index, 1);
-  res.send(entry);
+  res.send(entries);
 });
 
 export default router;
