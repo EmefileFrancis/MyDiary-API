@@ -9,13 +9,13 @@ router.get('/', (req, res) => {
 
 router.get('/:id', (req, res) => {
   const entry = entries.find(c => c.id === parseInt(req.params.id, 10));
-  if (!entry) res.status(404).send('Entry with specified ID not found.');
+  if (!entry) res.status(404).send({ message: 'Entry with specified ID not found.' });
   res.send(entry);
 });
 
 router.get('/userId/:userId', (req, res) => {
   const entriesByUser = entries.filter(c => c.userId === parseInt(req.params.userId, 10));
-  if (entriesByUser === undefined || entriesByUser.length === 0) res.status(404).send('No entry with specified userId.');
+  if (entriesByUser === undefined || entriesByUser.length === 0) res.status(404).send({ message: 'Entry with specified ID not found.' });
   res.send(entriesByUser);
 });
 
@@ -36,7 +36,7 @@ router.post('/', (req, res) => {
 
 router.put('/:id', (req, res) => {
   const entry = entries.find(c => c.id === parseInt(req.params.id, 10));
-  if (!entry) res.status(404).send('Entry with specified Id not found.');
+  if (!entry) res.status(404).send({ message: 'Entry with specified ID not found.' });
 
   const result = validateEntry(req.body);
   if (result.error) res.status(400).send(result.error.details[0].message);
@@ -51,7 +51,7 @@ router.put('/:id', (req, res) => {
 
 router.delete('/:id', (req, res) => {
   const entry = entries.find(c => c.id === parseInt(req.params.id, 10));
-  if (!entry) res.status(404).send('Entry with specified Id not found.');
+  if (!entry) res.status(404).send({ message: 'Entry with specified ID not found.' });
 
   const index = entries.indexOf(entry);
   entries.splice(index, 1);
