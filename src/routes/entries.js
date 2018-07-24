@@ -46,7 +46,7 @@ router.put('/:id', (req, res) => {
   entry.body = req.body.body;
   entry.date = req.body.date;
 
-  res.send(entry);
+  res.send(entries);
 });
 
 router.delete('/:id', (req, res) => {
