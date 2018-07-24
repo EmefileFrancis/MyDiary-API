@@ -22,7 +22,7 @@ router.get('/:id', function (req, res) {
   var entry = _entry.entries.find(function (c) {
     return c.id === parseInt(req.params.id, 10);
   });
-  if (!entry) res.status(404).send('Entry with specified ID not found.');
+  if (!entry) res.status(404).send({ message: 'Entry with specified ID not found.' });
   res.send(entry);
 });
 
@@ -30,7 +30,7 @@ router.get('/userId/:userId', function (req, res) {
   var entriesByUser = _entry.entries.filter(function (c) {
     return c.userId === parseInt(req.params.userId, 10);
   });
-  if (entriesByUser === undefined || entriesByUser.length === 0) res.sendStatus(404).send('No entry with specified userId.');
+  if (entriesByUser === undefined || entriesByUser.length === 0) res.status(404).send({ message: 'Entry with specified ID not found.' });
   res.send(entriesByUser);
 });
 
@@ -53,7 +53,7 @@ router.put('/:id', function (req, res) {
   var entry = _entry.entries.find(function (c) {
     return c.id === parseInt(req.params.id, 10);
   });
-  if (!entry) res.status(404).send('Entry with specified Id not found.');
+  if (!entry) res.status(404).send({ message: 'Entry with specified ID not found.' });
 
   var result = (0, _entry.validateEntry)(req.body);
   if (result.error) res.status(400).send(result.error.details[0].message);
@@ -63,18 +63,18 @@ router.put('/:id', function (req, res) {
   entry.body = req.body.body;
   entry.date = req.body.date;
 
-  res.send(entry);
+  res.send(_entry.entries);
 });
 
 router.delete('/:id', function (req, res) {
   var entry = _entry.entries.find(function (c) {
     return c.id === parseInt(req.params.id, 10);
   });
-  if (!entry) res.status(404).send('Entry with specified Id not found.');
+  if (!entry) res.status(404).send({ message: 'Entry with specified ID not found.' });
 
   var index = _entry.entries.indexOf(entry);
   _entry.entries.splice(index, 1);
-  res.send(entry);
+  res.send(_entry.entries);
 });
 
 exports.default = router;
