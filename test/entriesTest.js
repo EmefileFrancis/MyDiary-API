@@ -1,23 +1,18 @@
-const request = require('supertest');
-const expect = require('chai').expect;
+import request from 'supertest';
+import chai from 'chai';
+import { entries } from '../dist/src/models/entry';
+
+const expect = chai.expect;
 const server = require('../dist/index');
-const { entries } = require('../dist/src/models/entry');
 
 describe('api/v1/entries', () => {
-  // beforeEach(() => { server.default.open(); });
-
-  // afterEach(() => { server.default.close(); });
-
   describe('GET /', () => {
     it('should return all entries', async () => {
       const res = await request(server.default).get('/api/v1/entries');
       expect(res.status).to.equal(200);
       expect(res.body.length).to.equal(4);
-      const titles = [];
-      res.body.forEach((e) => {
-        titles.push(e.title);
-      });
-      expect(titles).to.have.members(['First Entry Title', 'Second Entry Title', 'Third Entry Title', 'Fourth Entry Title']);
+      expect(res.body[0]).to.have.property('title', 'First Entry Title');
+      expect(res.body[res.body.length - 1]).to.have.property('title', 'Fourth Entry Title');
     });
   });
 
@@ -69,13 +64,6 @@ describe('api/v1/entries', () => {
       expect(res.status).to.equal(200);
       expect(entries.length).to.equal(2);
     });
-
-    it('should return the deleted entry', async () => {
-      const res = await request(server.default).delete('/api/v1/entries/2');
-
-      expect(res.status).to.equal(200);
-      expect(res.body).to.have.property('id', 2);
-    });
   });
 
   describe('PUT /:id', () => {
@@ -100,17 +88,6 @@ describe('api/v1/entries', () => {
       expect(res.status).to.equal(200);
       expect(entries.find(c => c.id === 3)).to.have.property('id', 3);
       expect(entries.find(c => c.id === 3)).to.have.property('title', 'Another Entry Title');
-    });
-
-    it('should return the updated version after updating', async () => {
-      const res = await request(server.default).put('/api/v1/entries/3').send({
-        id: 3, userId: 1, title: 'Another Entry Title', body: 'Another Entry body', date: 'July 15, 2017 09:12:00',
-      });
-      expect(res.status).to.equal(200);
-      expect(res.body).to.have.property('id', 3);
-      expect(res.body).to.have.property('title', 'Another Entry Title');
-      expect(res.body).to.have.property('body', 'Another Entry body');
-      expect(res.body).to.have.property('userId', 1);
     });
   });
 
@@ -141,7 +118,7 @@ describe('api/v1/entries', () => {
         id: 6, userId: 1, title: 'Fifth Entry Title', body: 'Fifth Entry Body', date: 'July 15, 2017 09:12:00',
       });
       expect(res.status).to.equal(200);
-      expect(entries.length).to.equal(5);
+      expect(entries.length).to.equal(6);
     });
 
     it('should return the entry if it is valid', async () => {
