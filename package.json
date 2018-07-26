@@ -6,7 +6,7 @@
   "scripts": {
     "test": "npm run build && nyc --reporter=html --reporter=text mocha --compilers js:babel-core/register --require babel-polyfill --exit",
     "coverage": "nyc report --reporter=text-lcov | coveralls",
-    "start": "node bin/dev",
+    "start": "npm run build && node bin/dev",
     "clean": "rm -rf dist",
     "build": "npm run clean && mkdir dist && babel index.js -s -d dist && babel src -s -d dist/src",
     "production": "npm run build && node bin/production"
@@ -39,12 +39,17 @@
     "supertest": "^3.1.0"
   },
   "dependencies": {
+    "babel-core": "^6.26.3",
     "babel-polyfill": "^6.26.0",
     "babel-register": "^6.26.0",
+    "bcrypt": "^3.0.0",
     "compression": "^1.7.3",
+    "config": "^1.31.0",
     "debug": "^3.1.0",
     "express": "^4.16.3",
     "helmet": "^3.12.1",
-    "joi": "^13.4.0"
+    "joi": "^13.4.0",
+    "jsonwebtoken": "^8.3.0",
+    "pg": "^7.4.3"
   }
 }

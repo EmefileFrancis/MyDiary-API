@@ -1,0 +1,8 @@
+{
+    "jwtPrivateKey": "",
+    "user": "eduonix",
+    "database": "mydiarydb",
+    "password": "password",
+    "port": 5432
+}
+

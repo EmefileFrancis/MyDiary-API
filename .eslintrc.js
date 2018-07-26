@@ -3,7 +3,8 @@ module.exports = {
     "rules": {
         "linebreak-style": 0,
         "prefer-destructuring": 0,
-        "strict": 0
+        "strict": 0,
+        "consistent-return": 0
     },
     "parser": "babel-eslint",
     "parserOptions": {
