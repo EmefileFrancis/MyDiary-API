@@ -9,9 +9,9 @@ prod(app);
 
 app.use(express.json());
 app.use('/api/v1/entries', entries);
-app.use('/api/v1/users', users);
+app.use('/api/v1', users);
 
-const port = process.env.PORT || 3000;
+const port = process.env.PORT || 5000;
 const server = app.listen(port, () => console.log(`Listening on port ${port}`));
 
 export default server;

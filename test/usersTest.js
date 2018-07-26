@@ -4,10 +4,10 @@ import server from '../dist/index';
 
 const expect = chai.expect;
 
-describe('/api/v1/users', () => {
+describe('/api/v1/auth/signup', () => {
   describe('POST /', () => {
     it('should return 400 if username is lesser than 2', (done) => {
-      request(server).post('/api/v1/users')
+      request(server).post('/api/v1/auth/signup')
         .send({ username: '1', password: 'password', email: 'francis@gmail.com' })
         .end((err, res) => {
           expect(res.statusCode).to.equal(400);
@@ -18,7 +18,7 @@ describe('/api/v1/users', () => {
     });
 
     it('should return 400 if username is not provided', (done) => {
-      request(server).post('/api/v1/users')
+      request(server).post('/api/v1/auth/signup')
         .send({ password: 'password', email: 'francis@gmail.com' })
         .end((err, res) => {
           expect(res.statusCode).to.equal(400);
@@ -29,7 +29,7 @@ describe('/api/v1/users', () => {
     });
 
     it('should return 400 if email is not provided', (done) => {
-      request(server).post('/api/v1/users')
+      request(server).post('/api/v1/auth/signup')
         .send({ username: 'francis', password: 'password' })
         .end((err, res) => {
           expect(res.statusCode).to.equal(400);
@@ -40,7 +40,7 @@ describe('/api/v1/users', () => {
     });
 
     it('should return 400 if email is not a valid mail address', (done) => {
-      request(server).post('/api/v1/users')
+      request(server).post('/api/v1/auth/signup')
         .send({ username: 'francis', password: 'password', email: 'francisgmailcom' })
         .end((err, res) => {
           expect(res.statusCode).to.equal(400);
@@ -51,7 +51,7 @@ describe('/api/v1/users', () => {
     });
 
     it('should return 400 if password is not provided', (done) => {
-      request(server).post('/api/v1/users')
+      request(server).post('/api/v1/auth/signup')
         .send({ username: 'francis', email: 'francis@gmail.com' })
         .end((err, res) => {
           expect(res.statusCode).to.equal(400);
@@ -62,7 +62,7 @@ describe('/api/v1/users', () => {
     });
 
     it('should return 400 if password is less than 3', (done) => {
-      request(server).post('/api/v1/users')
+      request(server).post('/api/v1/auth/signup')
         .send({ username: 'francis', password: '12', email: 'francis@gmail.com' })
         .end((err, res) => {
           expect(res.statusCode).to.equal(400);
