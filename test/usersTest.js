@@ -71,16 +71,5 @@ describe('/api/v1/users', () => {
           done();
         });
     });
-
-    it('should return expected data if input is valid', (done) => {
-      request(server).post('/api/v1/users')
-        .send({ username: 'francis', password: 'password', email: 'francis@gmail.com' })
-        .end((err, res) => {
-          expect(res.statusCode).to.equal(200);
-          expect(res.body).to.have.property('success', true);
-          expect(res.body).to.have.property('message', 'User added.');
-          done();
-        });
-    });
   });
 });
