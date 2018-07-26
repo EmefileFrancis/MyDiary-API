@@ -1,6 +1,5 @@
 import Joi from 'joi';
 import jwt from 'jsonwebtoken';
-import config from 'config';
 
 class User {
   constructor(username, password, email, numberofentries, createdon) {
@@ -27,4 +26,15 @@ function validateUser(user) {
   return Joi.validate(user, schema);
 }
 
-export { User, generateAuthToken, validateUser };
+function validateForLogin(data) {
+  const schema = {
+    email: Joi.string().required().email(),
+    password: Joi.string().min(3).required(),
+  };
+
+  return Joi.validate(data, schema);
+}
+
+export {
+  User, generateAuthToken, validateUser, validateForLogin,
+};
