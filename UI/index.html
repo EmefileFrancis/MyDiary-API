@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Page Title</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" type="text/css" media="screen" href="css/style.css" />
+    <link rel="stylesheet" href="css/all.css" />
+    <script src="js/script.js"></script>
+</head>
+<body>
+    <div class="container">
+        <header class="header">
+            <p class="header-logo">MyDiary <i class="fas fa-book-open"></i></p>
+            <p class="header-sign-up"><a href="profile.html">My Profile</a></p>
+        </header>
+        <section class="wrapper">
+            <div class="wrapper-header">
+                <div class="header-content">
+                    <div class="user-photo"><span>F</span></div>
+                    <div class="diary-details">
+                        <h3>Francis's Journal</h3>
+                        <p><span id="num-entries">7</span> total entries | Last journal editted on <span id="date-span">9/7/2018</span></p>
+                    </div>                   
+                </div>
+            </div>
+            <div class="wrapper-main">
+                <div class="wrapper__form">
+                    
+                    <form action="#">
+                        <div id="radios">
+                            <label>
+                                <input type="radio" id="green-radio" class="option-input radio green-circle" name="entry-color" checked />
+                            </label>
+                            <label>
+                                <input type="radio" id="blue-radio" class="option-input radio blue-circle" name="entry-color" />
+                            </label>
+                            <label>
+                                <input type="radio" id="yellow-radio" class="option-input radio yellow-circle" name="entry-color" />
+                            </label>
+                            <label>
+                                <input type="radio" id="red-radio" class="option-input radio red-circle" name="entry-color" />
+                            </label>
+                            <label>
+                                <input type="radio" id="purple-radio" class="option-input radio purple-circle" name="entry-color" />
+                            </label>
+                            <label>
+                                <input type="radio" id="pink-radio" class="option-input radio pink-circle" name="entry-color" />
+                            </label>
+                        </div>
+                        <!-- End of radios -->
+                        <div class="form__row">
+                            <textarea placeholder="Enter your entry title...." id="entryTitle"></textarea>
+                        </div>
+                        <div class="form__row">
+                            <textarea placeholder="Enter your entry body...." id="entryBody"></textarea>
+                        </div>
+                        <div class="form__row">
+                            <button class="button save-btn"><i class="fas fa-plus-circle"></i> Save</button>
+                        </div>
+                    </form>
+                </div>
+                <div class="wrapper__entries">
+                    <div class="scrollable">
+                        <table id="entriesTable">
+                            <thead>
+                                <tr>
+                                    <th>Entry</th>
+                                    <th>Date Created</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr onclick="rowClick()">
+                                    <td><div class="td-circle green-circle">L</div> Lorem ipsum dolor sit amet consectetur adipisicing elit. Tenetur, harum.</td>
+                                    <td>7/7/2018</td>
+                                </tr>
+                                <tr onclick="rowClick()">
+                                    <td><div class="td-circle blue-circle">O</div> Lorem ipsum dolor sit amet consectetur adipisicing elit. Tenetur, harum.</td>
+                                    <td>7/7/2018</td>
+                                </tr>
+                                <tr onclick="rowClick()">
+                                    <td><div class="td-circle yellow-circle">R</div> Lorem ipsum dolor sit amet consectetur adipisicing elit. Tenetur, harum.</td>
+                                    <td>7/7/2018</td>
+                                </tr>
+                                <tr onclick="rowClick()">
+                                    <td><div class="td-circle red-circle">E</div> Lorem ipsum dolor sit amet consectetur adipisicing elit. Tenetur, harum.</td>
+                                    <td>7/7/2018</td>
+                                </tr>
+                                <tr onclick="rowClick()">
+                                    <td><div class="td-circle purple-circle">M</div> Lorem ipsum dolor sit amet consectetur adipisicing elit. Tenetur, harum.</td>
+                                    <td>7/7/2018</td>
+                                </tr>
+                                <tr onclick="rowClick()">
+                                    <td><div class="td-circle pink-circle">L</div>Lorem ipsum dolor sit amet consectetur adipisicing elit. Tenetur, harum.</td>
+                                    <td>7/7/2018</td>
+                                </tr>
+                                <tr onclick="rowClick()">
+                                    <td><div class="td-circle green-circle">O</div> Lorem ipsum dolor sit amet consectetur adipisicing elit. Tenetur, harum.</td>
+                                    <td>7/7/2018</td>
+                                </tr>
+                                <tr onclick="rowClick()">
+                                    <td><div class="td-circle yellow-circle">R</div> Lorem ipsum dolor sit amet consectetur adipisicing elit. Tenetur, harum.</td>
+                                    <td>7/7/2018</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+                
+            </div>
+            
+        </section>
+        <footer class="footer">
+            <p>Designed with <i class="fas fa-heart" style="color:red"></i> by Emefile, (a "wannabe" Andela Fellow).</p>
+        </footer>
+    </div>
+</body>
+</html>
