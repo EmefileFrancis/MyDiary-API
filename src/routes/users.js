@@ -1,8 +1,9 @@
 import express from 'express';
-import { insertANewUser } from '../queries';
+import { signUpUser, loginUser } from '../queries';
 
 const router = express.Router();
 
-router.post('/', insertANewUser);
+router.post('/auth/signup', signUpUser);
+router.post('/auth/login', loginUser);
 
 export default router;
