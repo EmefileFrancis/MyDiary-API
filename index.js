@@ -1,4 +1,5 @@
 import express from 'express';
+import Joi from 'joi';
 import entries from './src/routes/entries';
 import users from './src/routes/users';
 import prod from './src/middleware/prod';

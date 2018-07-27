@@ -58,9 +58,8 @@ function loginUser(req, res) {
         if (error) {
           return res.status(500).json({ success: false, data: error });
         }
-        console.log('data.password', data.rows[0].password);
-        bcrypt.compare(req.body.password, data.rows[0].password, (reject) => {
-          if (reject) {
+        bcrypt.compare(req.body.password, data.rows[0].password, (err, resolve) => {
+          if (!resolve) {
             return res.status(400).send('Invalid email or password');
           }
           const token = generateAuthToken(data);
